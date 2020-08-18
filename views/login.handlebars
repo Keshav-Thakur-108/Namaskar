@@ -12,42 +12,39 @@
                                     <h3 class="login-heading mb-4" align=”center”>Welcome</h3>
                                 </div>
                                 <!-- Login Form-->
-                                <form action="/register" method="POST" class="form-signin">
-                                    <div class="form-label-group">
-                                        <input name="username" type="text" id="inputUserame" class="form-control"
-                                            placeholder="Username" required autofocus>
-                                        <label for="inputUserame">Username</label>
-                                    </div>
-
+                                <form action="/login" method="POST">
+                                    <!-- Email Form-->
                                     <div class="form-label-group">
                                         <input name="email" type="email" id="inputEmail" class="form-control"
-                                            placeholder="Email address" required>
+                                            placeholder="Email address" required autofocus>
                                         <label for="inputEmail">Email address</label>
                                     </div>
-
-                                    <hr>
-
+                                    <!-- Password Form-->
                                     <div class="form-label-group">
                                         <input name="password" type="password" id="inputPassword" class="form-control"
                                             placeholder="Password" required>
                                         <label for="inputPassword">Password</label>
                                     </div>
-
-                                    <div class="form-label-group">
-                                        <input name="confirmPassword" type="password" id="inputConfirmPassword"
-                                            class="form-control" placeholder="Password" required>
-                                        <label for="inputConfirmPassword">Confirm password</label>
+                                    <!-- Checkbox -->
+                                    <div class="custom-control custom-checkbox mb-3">
+                                        <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                        <label class="custom-control-label" for="customCheck1">Remember password</label>
                                     </div>
-
+                                    <!-- Sign-in Button -->
                                     <button
                                         class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2"
-                                        type="submit">Register
-                                    </button>
-
-                                    <hr class="my-4">
-
+                                        type="submit">Sign in</button>
+                                    <div class="text-center">
+                                        <a class="small" href="https://huykhong.com">Forgot password?</a>
+                                    </div>
                                 </form>
-                                <a class="d-block text-center mt-2 small" href="https://huykhong.com">Sign In</a>
+                                <hr class="my-4">
+                                <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i
+                                        class="fab fa-google mr-2"></i> Sign up
+                                    with Google</button>
+                                <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i
+                                        class="fab fa-facebook-f mr-2"></i>
+                                    Sign up with Facebook</button>
                             </div>
                         </div>
                     </div>

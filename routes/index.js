@@ -13,7 +13,9 @@ router.get("/register", (req, res) => {
 });
 
 router.get("/login", (req, res) => {
-  res.send("This is the login page");
+  res.render("login", {
+    style: "login.css",
+  });
 });
 
 router.post(
