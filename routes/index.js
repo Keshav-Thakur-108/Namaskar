@@ -3,12 +3,13 @@ const router = express.Router();
 const passport = require("passport");
 
 router.get("/", (req, res) => {
-  req.session ? console.log(req.session.passport.user) : null;
   res.send("This is the home page");
 });
 
 router.get("/register", (req, res) => {
-  res.send("This is the register page");
+  res.render("register", {
+    style: "register.css",
+  });
 });
 
 router.get("/login", (req, res) => {

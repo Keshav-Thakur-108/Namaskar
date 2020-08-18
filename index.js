@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const server = require("http").createServer(app);
 const config = require("./config/key");
+const exphbs = require("express-handlebars");
 
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
@@ -17,6 +18,8 @@ const passport = require("passport");
 
 //Routes
 const indexRoutes = require("./routes");
+const { dirname } = require("path");
+const { pathToFileURL } = require("url");
 
 //Connecting to mongoose
 mongoose
@@ -41,7 +44,9 @@ app.use(
   })
 );
 
-app.set("view engine", "ejs");
+app.use(express.static("public"));
+app.engine("handlebars", exphbs());
+app.set("view engine", "handlebars");
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(passport.initialize());
