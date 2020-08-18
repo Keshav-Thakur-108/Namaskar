@@ -8,11 +8,10 @@ module.exports = function (passport) {
     new localStrategy(
       {
         passReqToCallback: true,
-        usernameField: "email",
       },
       function (req, username, password, done) {
         findOrCreateUser = function () {
-          User.findOne({ email: req.body.email }, (err, user) => {
+          User.findOne({ "local.email": req.body.email }, (err, user) => {
             if (err) {
               console.log(err);
               return done(err);

@@ -11,6 +11,18 @@ router.get("/register", (req, res) => {
   res.send("This is the register page");
 });
 
+router.get("/login", (req, res) => {
+  res.send("This is the login page");
+});
+
+router.post(
+  "/login",
+  passport.authenticate("login", {
+    failureRedirect: "/login",
+    successRedirect: "/",
+  })
+);
+
 router.post(
   "/register",
   passport.authenticate("register", {

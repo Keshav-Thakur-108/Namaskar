@@ -10,6 +10,7 @@ const MongoStore = require("connect-mongo")(session);
 
 //Auth
 const register = require("./auth/register");
+const login = require("./auth/login");
 
 //Passport
 const passport = require("passport");
@@ -56,6 +57,7 @@ passport.deserializeUser((user, done) => {
 app.use(indexRoutes);
 
 register(passport);
+login(passport);
 
 server.listen(3000, () => {
   console.log("Server Connected");
