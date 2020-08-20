@@ -57,13 +57,40 @@ router.get(
   }
 );
 
+router.get(
+  "/auth/github",
+  passport.authenticate("github", {
+    scope: ["user"],
+    prompt: "select_account",
+  })
+);
+
+router.get(
+  "/auth/github/callback",
+  passport.authenticate("github", {
+    failureRedirect: "/login",
+  }),
+  (req, res) => {
+    req.user.github.verified
+      ? res.redirect("/after_auth")
+      : res.redirect(`/${req.user.id}/github/confirm`);
+  }
+);
+
 router.get("/:id/:provider/confirm", (req, res) => {
   if (req.params.provider == "google") {
     res.render("confirmForm", {
-      id: req.user._id,
+      id: req.params.id,
       provider: req.params.provider,
       style: "confirmForm.css",
       username: req.user.google.username,
+    });
+  } else if (req.params.provider == "github") {
+    res.render("confirmForm", {
+      id: req.params.id,
+      provider: req.params.provider,
+      style: "confirmForm.css",
+      username: req.user.github.username,
     });
   }
 });
@@ -74,6 +101,21 @@ router.post("/:id/:provider/confirm", (req, res) => {
       { _id: req.params.id },
       {
         $set: { "google.verified": true, "google.username": req.body.username },
+      },
+      { new: true },
+      (err, user) => {
+        if (err) console.log(err);
+        else {
+          console.log(user);
+          res.redirect("/after_auth");
+        }
+      }
+    );
+  } else if (req.params.provider == "github") {
+    User.findOneAndUpdate(
+      { _id: req.params.id },
+      {
+        $set: { "github.verified": true, "github.username": req.body.username },
       },
       { new: true },
       (err, user) => {

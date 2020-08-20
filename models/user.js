@@ -27,6 +27,18 @@ const userSchema = mongoose.Schema({
       default: false,
     },
   },
+  github: {
+    url: {
+      type: String,
+    },
+    username: {
+      type: String,
+    },
+    verified: {
+      type: Boolean,
+      default: false,
+    },
+  },
 });
 
 module.exports = mongoose.model("User", userSchema);

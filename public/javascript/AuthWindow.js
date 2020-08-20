@@ -1,11 +1,11 @@
-const authWindow = () => {
+const authWindow = (provider) => {
   const height = 600;
   const width = 500;
   const top = window.outerHeight / 2 - height / 2;
   const left = screen.width / 2 - width / 2;
   window.open(
-    "/auth/google",
-    "Google",
+    `/auth/${provider}`,
+    provider,
     "resizable=" +
       false +
       ", width=" +

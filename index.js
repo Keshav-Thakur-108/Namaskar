@@ -13,6 +13,7 @@ const MongoStore = require("connect-mongo")(session);
 const register = require("./auth/register");
 const login = require("./auth/login");
 const google = require("./auth/google");
+const github = require("./auth/github");
 
 //Passport
 const passport = require("passport");
@@ -56,6 +57,7 @@ app.use(passport.session());
 register(passport);
 login(passport);
 google(passport);
+github(passport);
 
 passport.serializeUser((user, done) => {
   done(null, user);

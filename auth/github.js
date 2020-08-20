@@ -1,21 +1,21 @@
 const passport = require("passport");
-const googleStrategy = require("passport-google-oauth20").Strategy;
+const githubStrategy = require("passport-github2").Strategy;
 const User = require("../models/user");
 
 module.exports = function (passport) {
   passport.use(
-    new googleStrategy(
+    new githubStrategy(
       {
-        clientID:
-          "480676129224-ddsd1n1t2apjpphma58petpvqrg366uu.apps.googleusercontent.com",
-        clientSecret: "uUJZhUx0E9I5Hr8kA-jbjwjV",
-        callbackURL: "http://localhost:3000/auth/google/callback",
+        clientID: "fd4917ca75b0172ee3b1",
+        clientSecret: "10a8ca65dddea8c37519510232d8a8e4eab66dc1",
+        callbackURL: "http://localhost:3000/auth/github/callback",
         passReqToCallback: true,
       },
       function (request, accessToken, refreshToken, profile, done) {
         findOrCreateUser = function () {
+          console.log(profile);
           User.findOne(
-            { "google.email": profile._json.email },
+            { "github.url": profile._json.html_url },
             (err, foundUser) => {
               console.log(profile._json.email);
               if (err) {
@@ -25,8 +25,8 @@ module.exports = function (passport) {
 
               if (!foundUser) {
                 let newUser = new User();
-                newUser.google.email = profile._json.email;
-                newUser.google.username = profile._json.name;
+                newUser.github.url = profile._json.html_url;
+                newUser.github.username = profile._json.login;
 
                 newUser.save((err, user) => {
                   if (err) console.log(err);
