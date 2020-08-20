@@ -12,6 +12,7 @@ const MongoStore = require("connect-mongo")(session);
 //Auth
 const register = require("./auth/register");
 const login = require("./auth/login");
+const google = require("./auth/google");
 
 //Passport
 const passport = require("passport");
@@ -51,6 +52,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+register(passport);
+login(passport);
+google(passport);
+
 passport.serializeUser((user, done) => {
   done(null, user);
 });
@@ -60,9 +66,6 @@ passport.deserializeUser((user, done) => {
 
 // Add the auth routes after initializing passport as those will cause the router to be added to the stack earlier than you intend.
 app.use(indexRoutes);
-
-register(passport);
-login(passport);
 
 server.listen(3000, () => {
   console.log("Server Connected");

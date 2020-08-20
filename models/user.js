@@ -4,18 +4,27 @@ const userSchema = mongoose.Schema({
   local: {
     email: {
       type: String,
-      required: true,
       trim: true,
     },
     username: {
       type: String,
-      required: true,
       trim: true,
     },
     password: {
       type: String,
-      required: true,
       trim: true,
+    },
+  },
+  google: {
+    email: {
+      type: String,
+    },
+    username: {
+      type: String,
+    },
+    verified: {
+      type: Boolean,
+      default: false,
     },
   },
 });

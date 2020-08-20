@@ -1,0 +1,16 @@
+<div class="container d-flex align-items-center justify-content-center">
+    <div>
+        <h1 class="text-center mb-4 display-5">Create your account</h1>
+        <form action="/{{id}}/{{provider}}/confirm" method="POST">
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="username">Username</label>
+                    <input type="text" name="username" value={{username}} class="form-control">
+                </div>
+
+            </div>
+            <button type="submit" class="mt-2 btn button d-block mx-auto btn-success">Continue</button>
+        </form>
+    </div>
+
+</div>

@@ -1,0 +1,15 @@
+* {
+  box-sizing: border-box;
+}
+
+.btn {
+  width: 150px;
+  border-radius: 20px;
+}
+
+html,
+body,
+.container {
+  height: 100%;
+  min-height: 100%;
+}
