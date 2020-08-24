@@ -8,6 +8,13 @@ const exphbs = require("express-handlebars");
 
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
+const io = require("socket.io")(server);
+const { ExpressPeerServer } = require("peer");
+const peerServer = ExpressPeerServer(server, {
+  debug: true,
+});
+
+app.use("/peerjs", peerServer);
 
 //Auth
 const register = require("./auth/register");
@@ -20,8 +27,8 @@ const passport = require("passport");
 
 //Routes
 const indexRoutes = require("./routes");
-const { dirname } = require("path");
-const { pathToFileURL } = require("url");
+const callRoutes = require("./routes/call");
+const { execArgv } = require("process");
 
 //Connecting to mongoose
 mongoose
@@ -68,6 +75,18 @@ passport.deserializeUser((user, done) => {
 
 // Add the auth routes after initializing passport as those will cause the router to be added to the stack earlier than you intend.
 app.use(indexRoutes);
+app.use(callRoutes);
+
+io.on("connect", (socket) => {
+  socket.on("join-room", (id) => {
+    socket.broadcast.emit("user-connected", id);
+    console.log("joined: ", id);
+
+    socket.on("disconnect", () => {
+      socket.broadcast.emit("user-disconnected", id);
+    });
+  });
+});
 
 server.listen(3000, () => {
   console.log("Server Connected");

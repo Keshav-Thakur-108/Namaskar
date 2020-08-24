@@ -1,0 +1,21 @@
+<script defer src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
+<script src="/socket.io/socket.io.js" defer></script>
+<script src="/javascript/room.js" defer></script>
+
+<div>
+    <div id="video-grid">
+
+    </div>
+    <div class="bottom-panel">
+        <div class="control_block">
+            <div onclick="muteUnmute()" class="controls_button mute_button">
+                <i style="font-size: 1.5rem; color: #273469" class="fas fa-microphone-alt"></i>
+                <span style="font-size:1rem">Mute</span>
+            </div>
+            <div onclick="stopPlayVideo()" class="controls_button video_button">
+                <i style="font-size: 1.5rem; color: #273469" class="fas fa-video"></i>
+                <span>Stop Video</span>
+            </div>
+        </div>
+    </div>
+</div>

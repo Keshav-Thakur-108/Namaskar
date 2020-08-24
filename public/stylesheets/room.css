@@ -1,0 +1,43 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #272635;
+}
+
+#video-grid {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  align-items: center;
+}
+
+video {
+  max-width: 400px;
+  max-height: 400px;
+}
+
+.bottom-panel {
+  align-items: center;
+  height: 4rem;
+  background: #e8e9f3;
+  width: 100vw;
+  position: fixed;
+  display: flex;
+  bottom: 0;
+}
+
+.control_block {
+  display: flex;
+}
+
+.controls_button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 10px;
+  min-width: 80px;
+  cursor: pointer;
+}
