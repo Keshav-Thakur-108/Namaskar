@@ -19,6 +19,7 @@ video {
 }
 
 .bottom-panel {
+  justify-content: space-between;
   align-items: center;
   height: 4rem;
   background: #e8e9f3;

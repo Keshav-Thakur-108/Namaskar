@@ -55,6 +55,15 @@ const setStopButton = () => {
   div.innerHTML = html;
 };
 
+const leaveMeeting = () => {
+  socket.on("user-disconnected", (id) => {
+    console.log("disconnected ", id);
+    peers[id].close();
+    delete peers[id];
+  });
+  window.location.replace("/");
+};
+
 const setPlayButton = () => {
   const html = `<i style="font-size: 1.5rem; color: #273469" class="fas fa-video"></i><span>Stop Video</span>`;
   const div = document.querySelector(".video_button");
@@ -113,3 +122,7 @@ socket.on("user-disconnected", (id) => {
   peers[id].close();
   delete peers[id];
 });
+
+setInterval(() => {
+  console.log(peers);
+}, 1000);
