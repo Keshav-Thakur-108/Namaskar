@@ -5,6 +5,11 @@ let peers = {};
 
 const roomId = window.location.pathname.split("/")[1];
 let myVideoStream;
+
+const id = document.getElementById("meetingId");
+const password = document.getElementById("meetingPass");
+const p = document.getElementById("copyText");
+const modal = document.querySelector(".modal");
 /*
 To ignore Chrome’s secure origin policy, follow these steps.
 Navigate to `chrome://flags/#unsafely-treat-insecure-origin-as-secure` in Chrome.
@@ -123,6 +128,11 @@ const addVideoStream = (video, stream) => {
 //   modal.innerHTML = html;
 // };
 
+const showDetails = () => {
+  modal.classList.toggle("open");
+  p.style.display = "none";
+};
+
 const connectToNewUser = (userId, stream) => {
   const call = myPeer.call(userId, stream);
   const video = document.createElement("video");
@@ -145,6 +155,13 @@ socket.on("user-disconnected", (id, username) => {
   }
 });
 
-setInterval(() => {
-  console.log(peers);
-}, 1000);
+const copy = () => {
+  console.log(password.innerText);
+  let temp = document.createElement("textarea");
+  document.body.appendChild(temp);
+  temp.value = `Join Namaste Meeting \n${window.location.href} \n\nMeeting ID: ${id.innerText} \nMeeting Password: ${password.innerText}`;
+  temp.select();
+  document.execCommand("copy");
+  p.style.display = "block";
+  document.body.removeChild(temp);
+};

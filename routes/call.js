@@ -13,6 +13,8 @@ router.get("/:roomId/call", (req, res) => {
         if (meeting.participants.includes(req.user._id)) {
           res.render("room", {
             style: "room.css",
+            meetingId: meeting._id,
+            meetingPassword: meeting.password,
           });
         } else {
           res.redirect(`/${req.params.roomId}/joinMeeting`);

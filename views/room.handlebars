@@ -3,13 +3,17 @@
 <script src="/javascript/room.js" defer></script>
 
 <div class="modal ">
-    <h2 style="color: #273469;" class="text-center">Participants</h2>
-    <ul>
-        <li>Keshav</li>
-        <li>Akshay</li>
-        <li>Sachin</li>
-        <li>Akhil</li>
-    </ul>
+    <h1 class="display-5 text-center">Meeting Details</h1>
+    <h3>Meeting id: <span id="meetingId">{{meetingId}}</span></h3>
+    <h3>Meeting password: <span id="meetingPass">{{meetingPassword}}</span></h3>
+    <div>
+        <button style="position: relative;" class="btn6" onclick="copy()">CLICK TO COPY</button>
+        <p id="copyText" class="text-center">Copied to clipboard!</p>
+    </div>
+
+    <i onclick="showDetails()" class="fas fa-times"></i>
+
+
 </div>
 
 <div>
@@ -28,11 +32,17 @@
             </div>
         </div>
         <div class="control_block">
+            <div onclick="showDetails()" class="controls_button">
+                <i style="font-size: 1.5rem; color: #273469" class="fas fa-user-plus"></i>
+                <span>Invite</span>
+            </div>
+        </div>
+        {{!-- <div class="control_block">
             <div onclick="showParticipants()" class="controls_button">
                 <i style="font-size: 1.5rem; color: #273469" class="fas fa-users"></i>
                 <span>Participants</span>
             </div>
-        </div>
+        </div> --}}
         <div class="control_block">
             <div onclick="leaveMeeting()" class="controls_button">
                 <span style="color: red;">Leave meeting</span>
