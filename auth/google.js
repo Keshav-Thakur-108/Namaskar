@@ -27,6 +27,7 @@ module.exports = function (passport) {
                 let newUser = new User();
                 newUser.google.email = profile._json.email;
                 newUser.google.username = profile._json.name;
+                newUser.type = "google";
 
                 newUser.save((err, user) => {
                   if (err) console.log(err);

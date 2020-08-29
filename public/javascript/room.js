@@ -2,6 +2,8 @@ const socket = io("/");
 const videoGrid = document.querySelector("#video-grid");
 const myVideo = document.createElement("video");
 let peers = {};
+
+const roomId = window.location.pathname.split("/")[1];
 let myVideoStream;
 /*
 To ignore Chrome’s secure origin policy, follow these steps.
@@ -35,7 +37,7 @@ navigator.mediaDevices
   .catch((err) => console.log(err));
 
 myPeer.on("open", (id) => {
-  socket.emit("join-room", id);
+  socket.emit("join-room", id, roomId);
 });
 
 const stopPlayVideo = () => {
@@ -56,8 +58,7 @@ const setStopButton = () => {
 };
 
 const leaveMeeting = () => {
-  socket.on("user-disconnected", (id) => {
-    console.log("disconnected ", id);
+  socket.on("user-disconnected", (id, username) => {
     peers[id].close();
     delete peers[id];
   });
@@ -103,6 +104,25 @@ const addVideoStream = (video, stream) => {
   videoGrid.append(video);
 };
 
+// const showParticipants = () => {
+//   const modal = document.querySelector(".modal");
+//   modal.classList.toggle("open");
+
+//   const html = `<h2 style="color: #273469;" class="text-center">Participants</h2>
+//     <ul>
+//         <li>You</li>
+//         ${
+//           users.length > 0
+//             ? users.map((name) => {
+//                 console.log(name);
+//                 return `<li>${name}</li>`;
+//               })
+//             : ""
+//         }
+//     </ul>`;
+//   modal.innerHTML = html;
+// };
+
 const connectToNewUser = (userId, stream) => {
   const call = myPeer.call(userId, stream);
   const video = document.createElement("video");
@@ -117,10 +137,12 @@ const connectToNewUser = (userId, stream) => {
   peers[userId] = call;
 };
 
-socket.on("user-disconnected", (id) => {
+socket.on("user-disconnected", (id, username) => {
   console.log("disconnected ", id);
-  peers[id].close();
-  delete peers[id];
+  if (peers[id]) {
+    peers[id].close();
+    delete peers[id];
+  }
 });
 
 setInterval(() => {

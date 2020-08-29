@@ -2,6 +2,16 @@
 <script src="/socket.io/socket.io.js" defer></script>
 <script src="/javascript/room.js" defer></script>
 
+<div class="modal ">
+    <h2 style="color: #273469;" class="text-center">Participants</h2>
+    <ul>
+        <li>Keshav</li>
+        <li>Akshay</li>
+        <li>Sachin</li>
+        <li>Akhil</li>
+    </ul>
+</div>
+
 <div>
     <div id="video-grid">
 
@@ -15,6 +25,12 @@
             <div onclick="stopPlayVideo()" class="controls_button video_button">
                 <i style="font-size: 1.5rem; color: #273469" class="fas fa-video"></i>
                 <span>Stop Video</span>
+            </div>
+        </div>
+        <div class="control_block">
+            <div onclick="showParticipants()" class="controls_button">
+                <i style="font-size: 1.5rem; color: #273469" class="fas fa-users"></i>
+                <span>Participants</span>
             </div>
         </div>
         <div class="control_block">

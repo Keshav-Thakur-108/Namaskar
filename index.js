@@ -28,7 +28,7 @@ const passport = require("passport");
 //Routes
 const indexRoutes = require("./routes");
 const callRoutes = require("./routes/call");
-const { execArgv } = require("process");
+const meetingRoutes = require("./routes/meeting");
 
 //Connecting to mongoose
 mongoose
@@ -53,6 +53,12 @@ app.use(
   })
 );
 
+// app.use(sessionMiddleware);
+
+// io.use((socket, next) => {
+//   sessionMiddleware(socket.request, {}, next);
+// });
+
 app.use(express.static("public"));
 app.engine("handlebars", exphbs());
 app.set("view engine", "handlebars");
@@ -76,14 +82,20 @@ passport.deserializeUser((user, done) => {
 // Add the auth routes after initializing passport as those will cause the router to be added to the stack earlier than you intend.
 app.use(indexRoutes);
 app.use(callRoutes);
+app.use(meetingRoutes);
 
 io.on("connect", (socket) => {
-  socket.on("join-room", (id) => {
-    socket.broadcast.emit("user-connected", id);
-    console.log("joined: ", id);
+  socket.on("join-room", (id, roomId) => {
+    let username = "";
+    // const user = socket.request.session.passport.user;
+    // if (user.type == "github") username = user.github.username;
+    // else if (user.type == "google") username = user.google.username;
+    // else username = user.local.username;
+    socket.join(roomId);
+    socket.to(roomId).broadcast.emit("user-connected", id);
 
     socket.on("disconnect", () => {
-      socket.broadcast.emit("user-disconnected", id);
+      socket.to(roomId).broadcast.emit("user-disconnected", id);
     });
   });
 });

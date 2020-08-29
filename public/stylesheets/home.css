@@ -1,0 +1,45 @@
+.bg-light {
+  background-color: #273469 !important;
+}
+
+.wrap {
+  display: flex;
+  flex-direction: column;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.btn6,
+.btn6:link,
+.btn6:visited {
+  margin: 10px;
+  text-decoration: none;
+  padding: 13px 10px;
+  border: 1px solid #273469;
+  color: #273469;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 24px;
+  letter-spacing: 3px;
+  transition: all 0.2s ease-in-out;
+}
+.btn6:hover,
+.btn6:link:hover,
+.btn6:visited:hover {
+  background: #273469;
+  border: 1px solid #273469;
+  color: #fefefe;
+  border-radius: 30px;
+}
+
+@media only screen and (max-width: 600px) {
+  .btn6,
+  .btn6:link,
+  .btn6:visited {
+    font-size: 16px;
+  }
+}

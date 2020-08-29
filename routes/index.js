@@ -4,7 +4,33 @@ const User = require("../models/user");
 const passport = require("passport");
 
 router.get("/", (req, res) => {
-  res.send("This is the home page");
+  let username = "";
+
+  if (req.isAuthenticated()) {
+    switch (req.user.type) {
+      case "google":
+        username = req.user.google.username;
+        break;
+      case "github":
+        username = req.user.github.username;
+        break;
+      case "local":
+        username = req.user.local.username;
+        break;
+      default:
+        username = null;
+    }
+  }
+
+  res.render("home", {
+    username: username,
+    style: "home.css",
+  });
+});
+
+router.get("/logout", (req, res) => {
+  req.logout();
+  res.redirect("/");
 });
 
 router.get("/register", (req, res) => {

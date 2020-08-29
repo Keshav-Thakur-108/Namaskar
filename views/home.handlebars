@@ -1,0 +1,34 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-light">
+    <a class="navbar-brand" href="#">Namaste</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+        aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav ml-auto">
+            {{#if username}}
+            <li class="nav-item active">
+                <a class="nav-link " href="#">{{username}}</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link " href="/logout">Logout</a>
+            </li>
+            {{else}}
+            <li class="nav-item active">
+                <a class="nav-link " href="/login">SignIn</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link " href="/register">SignUp</a>
+            </li>
+            {{/if}}
+
+        </ul>
+    </div>
+
+
+</nav>
+<div class="wrap">
+    <a href="/create" class="btn6">Create meeting</a>
+    <a href="/joinMeeting" class="btn6">Join meeting</a>
+
+</div>

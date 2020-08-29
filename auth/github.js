@@ -27,6 +27,7 @@ module.exports = function (passport) {
                 let newUser = new User();
                 newUser.github.url = profile._json.html_url;
                 newUser.github.username = profile._json.login;
+                newUser.type = "github";
 
                 newUser.save((err, user) => {
                   if (err) console.log(err);
