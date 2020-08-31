@@ -99,7 +99,7 @@ io.on("connect", (socket) => {
     });
   });
 });
-
-server.listen(3000, () => {
+const PORT = process.env.PORT;
+server.listen(PORT || 3000, () => {
   console.log("Server Connected");
 });
