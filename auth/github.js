@@ -8,7 +8,8 @@ module.exports = function (passport) {
       {
         clientID: "fd4917ca75b0172ee3b1",
         clientSecret: "10a8ca65dddea8c37519510232d8a8e4eab66dc1",
-        callbackURL: "http://localhost:3000/auth/github/callback",
+        callbackURL:
+          "https://mighty-plains-74573.herokuapp.com/auth/github/callback",
         passReqToCallback: true,
       },
       function (request, accessToken, refreshToken, profile, done) {

@@ -9,7 +9,8 @@ module.exports = function (passport) {
         clientID:
           "480676129224-ddsd1n1t2apjpphma58petpvqrg366uu.apps.googleusercontent.com",
         clientSecret: "uUJZhUx0E9I5Hr8kA-jbjwjV",
-        callbackURL: "http://localhost:3000/auth/google/callback",
+        callbackURL:
+          "https://mighty-plains-74573.herokuapp.com/auth/google/callback",
         passReqToCallback: true,
       },
       function (request, accessToken, refreshToken, profile, done) {
