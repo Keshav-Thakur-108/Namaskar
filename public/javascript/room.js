@@ -19,8 +19,8 @@ Save and restart Chrome.
 */
 
 const myPeer = new Peer(undefined, {
-  secure: true,
-  host: "https://mighty-plains-74573.herokuapp.com/",
+  path: "/peerjs",
+  host: "/",
   port: 443,
 });
 
