@@ -18,7 +18,11 @@ Add any addresses you want to ignore the secure origin policy for. Remember to i
 Save and restart Chrome.
 */
 
-const myPeer = new Peer();
+const myPeer = new Peer(undefined, {
+  secure: true,
+  host: "https://mighty-plains-74573.herokuapp.com/",
+  port: 443,
+});
 
 navigator.mediaDevices
   .getUserMedia({
